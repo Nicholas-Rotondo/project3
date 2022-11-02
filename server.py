@@ -88,6 +88,8 @@ for l in secret_data:
     secret_dict[name] = pwd
 
 ### Loop to accept incoming HTTP connections and respond.
+user = ""
+psw = ""
 while True:
     client, addr = sock.accept()
     req = client.recv(1024)
@@ -100,17 +102,27 @@ while True:
     print_value('entity body', body)
 
     # TODO: Put your application logic here!
-    post_data = body.split("&")
-    for data in post_data:
-        if len(data.split("=")) == 2:
-            k, v = data.split("=")
-            post_dict[k] = v
-    print post_dict
-    for user, psw in name_pass_dict.iteritems():
-        for user1, psw1 in post_dict.iteritems():
-            if psw1 
-            print user, psw
-            print user1, psw1
+    if len(post_dict) == 0:
+        post_data = body.split("&")
+        for data in post_data:
+            if len(data.split("=")) == 2:
+                k, v = data.split("=")
+                post_dict[k] = v
+    else:
+        user = post_dict['username']
+        psw = post_dict['password']
+        if(user not in name_pass_dict):
+            print("wrong user")
+            html_content_to_send = login_page
+
+        elif(name_pass_dict[user] != psw):
+            print("wrong pass")
+            html_content_to_send = login_page
+
+        else:
+            print("correct user and pass")
+            html_content_to_send = success_page
+
     # You need to set the variables:
     # (1) `html_content_to_send` => add the HTML content you'd
     # like to send to the client.
