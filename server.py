@@ -47,11 +47,11 @@ success_page = """
 #### Helper functions
 # Printing.
 def print_value(tag, value):
-    print "Here is the", tag
-    print "\"\"\""
-    print value
-    print "\"\"\""
-    print
+    print("Here is the", tag)
+    print("\"\"\"")
+    print(value)
+    print("\"\"\"")
+    print()
 
 # Signal handler for graceful exit
 def sigint_handler(sig, frame):
@@ -75,7 +75,7 @@ name_pass_dict = {}
 for l in data:
     name, pwd = l.strip().split(' ')
     name_pass_dict[name] = pwd
-print name_pass_dict
+print(name_pass_dict)
 
 # extract secret data
 secret_path = './secrets.txt'
@@ -147,8 +147,8 @@ while True:
     client.send(response)
     client.close()
     
-    print "Served one request/connection!"
-    print
+    print("Served one request/connection!")
+    print()
 
 # We will never actually get here.
 # Close the listening socket
