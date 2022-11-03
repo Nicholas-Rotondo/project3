@@ -197,7 +197,7 @@ while True:
     response += headers_to_send
     response += 'Content-Type: text/html\r\n\r\n'
     response += html_content_to_send
-    #print_value('response', response)    
+    print_value('response', response)    
     client.send(response)
     client.close()
     
